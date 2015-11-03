@@ -8,26 +8,31 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
- 
+    <link href="/static/style.css" rel="stylesheet">
  
 </head>
  
 <body>
- 
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Ask Beeves</h1>
-            <input type"text" />
-            <p class="lead"></p>
-            <p><a class="btn btn-lg btn-success" href="question" role="button">Search</a>
+    <div class="holder">
+        <div class="container left" >
+            <img src="/static/logo.png" />
+        </div>
+        <div class="container right" >
+            <img id="askbeeves_logo" src="/static/askbeeves.png" />
+            <br/>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div><!-- /input-group -->
+            <br/>
             </p>
         </div>
- 
-        <footer class="footer">
-            <p>&copy; Company 2015</p>
-        </footer>
- 
     </div>
+    <footer class="footer">
+        <p>&copy; Porter'sMinions</p> 
+    </footer>
 </body>
  
 </html>
