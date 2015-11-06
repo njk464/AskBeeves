@@ -1,5 +1,7 @@
 body {
     background: #CF5300;
+	background-image: url("/static/background.jpg");
+	background-size: cover;
 }
 .right {
 	height: 100%;
@@ -12,4 +14,9 @@ body {
 #askbeeves_logo {
 	position: absolute;
 	top: 0px;
+}
+
+#beeves {
+	width: auto;
+	height: 80%;
 }
