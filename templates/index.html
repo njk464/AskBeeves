@@ -18,16 +18,18 @@
             <img id="beeves" src="/static/logo.png" />
         </div>
         <div class="container right">
-            <img id="askbeeves_logo" src="/static/askbeeves.png" />
+            <img id="askbeeves_logo" src="/static/askbeeves.png"/>
             <br/>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </div><!-- /input-group -->
+            <form action="answer" method="post">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="search" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+            </form>
             <br/>
         </div>
     </div>
