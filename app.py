@@ -1,6 +1,7 @@
 from flask import Flask, render_template, json, request
 import json
 import sys
+from StringIO import StringIO
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -10,7 +11,9 @@ def main():
     return render_template('index.html')
 @app.route("/answer", methods=['GET', 'POST'])
 def answer():
-    return render_template('answer.html', answer=ask_question("uta_student3", "nkcGD7qy",request.form['search']), question=request.form['search'])
+    answer = ask_question("uta_student3", "nkcGD7qy",request.form['search'])
+    return render_template('answer.html', answer=json.dumps(json.loads(answer.content), indent=4), question=request.form['search'])
+
 # method for asking a question to the watson API
 # ask_question("uta_student30", "V5iYOgVT", question)
 def ask_question(username, password, question):
