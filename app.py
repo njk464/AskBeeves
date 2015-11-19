@@ -1,10 +1,9 @@
 from flask import Flask, render_template, json, request
+from requests.auth import HTTPBasicAuth
 import json
 import sys
-from StringIO import StringIO
-
 import requests
-from requests.auth import HTTPBasicAuth
+
 app = Flask(__name__)
 @app.route("/")
 def main():
