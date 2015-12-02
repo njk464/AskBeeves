@@ -28,8 +28,14 @@
         </div>
         <div class="container right">
             <!-- answer. I don't know how the answer is going to come out right now so I am just leaving it like this. -->
-            <p id="answer">{{answer}}</p>
-            <br/>
+            <!-- <p id="answer">{{answer}}</p>    -->
+
+            <ul>
+                {% for item in answer %}
+                    <li>{{item.title}} </br></br> {{item.text}}</br></br> {{item.value}} </br></br></li>
+              {% endfor %}
+            </ul>
+
         </div>
     </div>
     <footer class="footer">
