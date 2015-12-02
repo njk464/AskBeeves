@@ -3,19 +3,30 @@ body {
 	background-image: url("/static/background.jpg");
 	background-size: cover;
 }
-.right {
-	height: 100%;
-	display: inline-block;
+.holder {
+    display: inline-block;
+}
+#bevo_logo {
+    transform: translateX(10%);
 }
 .left {
-	height: 100%;
-	display: inline-block;
+    float: left;
+    width: auto;
 }
-#askbeeves_logo {
-	position: absolute;
-	top: 0px;
+.right {
+    float: right;
+    width: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(60%);
 }
 #beeves {
 	width: auto;
-	height: 80%;
+	height: 90vh;
+}
+.footer_wrapper {
+    overflow: hidden;
+    width: 100%;
+    margin: 10px 0;
+    padding: 7px;
 }

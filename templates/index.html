@@ -12,8 +12,9 @@
             <img id="beeves" src="/static/logo.png" />
         </div>
         <div class="container right">
-            <a href="/"><img id="askbeeves_logo" src="/static/askbeeves.png"/></a>
-            <br/>
+            <div id="bevo_logo">
+                <img id="askbeeves_logo" src="/static/askbeeves.png"/><br/>
+            </div>
             <form action="answer" method="post">
                 <div class="input-group">
                   <input type="text" class="form-control" name="search" placeholder="Search for...">
@@ -25,12 +26,14 @@
                 </div><!-- /input-group -->
             </form>
             <br/>
-        </div>
-    </div>
     <p style="color:white;">most frequent {{freq}}</p>
     <p style="color:white;">most recent {{rec}}</p>
-    <footer class="footer">
-        <p>&copy; Porter's Minions</p> 
-    </footer>
+        </div>
+    </div>
+    <div class="footer_wrapper">
+        <footer class="footer">
+            <p>&copy; Porter's Minions</p> 
+        </footer>
+    </div>
 </body>
 </html>
