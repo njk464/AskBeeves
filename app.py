@@ -22,6 +22,7 @@ def main():
     rec = most_recent(5)
     freq = most_frequent(5)
     return render_template('index.html', freq=freq, rec=rec)
+
 @app.route("/answer", methods=['GET', 'POST'])
 def answer():
     question = request.form['search']
@@ -44,6 +45,7 @@ def ask_question(username, password, question):
                              headers=headers)
 
     return response
+
 # totally open to a SQL injection, but it can't do that much harm and I could not fix the error that kept coming up while trying to prevent it.
 def update(question):
     conn = mysql.connect()
@@ -64,6 +66,7 @@ def update(question):
         cursor.close()
         conn.close()
         return False
+
 def most_frequent(amount):
     conn = mysql.connect()
     cursor = conn.cursor()
@@ -74,6 +77,7 @@ def most_frequent(amount):
     cursor.close()
     conn.close()
     return data
+
 def most_recent(amount):
     conn = mysql.connect()
     cursor = conn.cursor()
@@ -84,5 +88,6 @@ def most_recent(amount):
     cursor.close()
     conn.close()
     return data
+
 if __name__ == "__main__":
     app.run()
