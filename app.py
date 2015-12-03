@@ -32,20 +32,33 @@ def answer():
 
     parsed_json = json.loads(answer.content)['question']['evidencelist']
 
+    count = 0
     # Don't parse this way folks.
     for x in parsed_json:
+        if 'text' not in x and 'title' not in x:
+            del parsed_json[count]
+
         if 'id' in x:
-            del x['id']
+            del parsed_json[count]['id']
         if 'document' in x:
-            del x['document']
+            del parsed_json[count]['document']
         if 'copyright' in x:
-            del x['copyright']
+            del parsed_json[count]['copyright']
         if 'termsOfUse' in x:
-            del x['termsOfUse']
+            del parsed_json[count]['termsOfUse']
         if 'metadataMap' in x:
-            del x['metadataMap']
+            del parsed_json[count]['metadataMap']
+        if 'value' in x:
+            del x['value']
+        if count > 3:
+            del parsed_json[count]
+
+        count += 1
 
     return render_template('answer.html', answer=parsed_json, question=question)
+
+
+    # return render_template('answer.html', answer=parsed_json, question=question)
 
 # method for asking a question to the watson API
 # ask_question("uta_student30", "V5iYOgVT", question)
