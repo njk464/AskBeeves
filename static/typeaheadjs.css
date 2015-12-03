@@ -1,0 +1,22 @@
+span.twitter-typeahead {
+  width: 100%;
+}
+.input-group span.twitter-typeahead {
+  display: block !important;
+}
+
+.tt-dataset {
+    display: none;
+}
+
+#match-qs {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    list-style-type: none;
+    list-style-position: inside;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
