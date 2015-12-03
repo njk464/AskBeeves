@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
     <title>Ask Beeves</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Latest compiled and minified jQuery build -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <link href="/static/style.css" rel="stylesheet">
+    <script src="/static/askbeeves.js"></script>
 </head>
 <body>
     <div class="holder">
@@ -26,8 +34,15 @@
                 </div><!-- /input-group -->
             </form>
             <br/>
-    <p style="color:white;">most frequent {{freq}}</p>
-    <p style="color:white;">most recent {{rec}}</p>
+            <!--<p style="color:white;">most frequent {{freq}}</p>
+            <p style="color:white;">most recent {{rec}}</p>-->
+            
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-faq">
+                Frequently Asked
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-raq">
+                Recently Asked
+            </button>
         </div>
     </div>
     <div class="footer_wrapper">
@@ -35,5 +50,41 @@
             <p>&copy;2015. Powered by IBM Watson.</p> 
         </footer>
     </div>
+    
+    <!-- FAQ -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-faq">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Frequently Asked Questions</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{freq}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <!-- RAQ -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-raq">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Recently Asked Questions</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{rec}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </body>
 </html>
