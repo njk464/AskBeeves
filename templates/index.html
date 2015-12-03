@@ -137,29 +137,40 @@ $(function() {
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                   </span>
-                </div><!-- /input-group -->
+                </div>
             </form>
             <div id="matchi" style="z-index: 5">
                 <ul id="match-qs"></ul>
             </div>
             <br/>
-            <!--<p style="color:white;">most frequent {{freq}}</p>
-            <p style="color:white;">most recent {{rec}}</p>-->
             
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-faq">
+            <!-- <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-faq">
                 Frequently Asked
             </button>
             <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-raq">
                 Recently Asked
-            </button>
+            </button> -->
         </div>
     </div>
-    <div class="footer_wrapper">
-        <footer class="footer">
-            <p>&copy;2015. Powered by IBM Watson.</p> 
-        </footer>
+    <div class="container" id="questions" >
+        <h3 id="questions_h">Hot questions right now</h3>
+        {% for item in comb %}
+            <div id="q">
+                <form action="answer" method="post">
+                    <input type="hidden" name="search" value="{{item[0]}}"/>
+                    <button class="btn btn-default dbquestion" type="submit">{{item[0]}}</button>
+                </form>
+            </div>
+        {% endfor %}
+        <!-- {% for item in rec %}
+            <div id="q">
+                <form action="answer" method="post">
+                    <input type="hidden" name="search" value="{{item[0]}}"/>
+                    <button class="btn btn-default dbquestion" type="submit"><p>{{item[0]}}</p></button>
+                </form>
+            </div>
+        {% endfor %} -->
     </div>
-    
     <!-- FAQ -->
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-faq">
         <div class="modal-dialog">
@@ -195,5 +206,12 @@ $(function() {
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <div class="footer_wrapper">
+        <footer class="footer">
+            <p>&copy;2015. Powered by IBM Watson.</p> 
+        </footer>
+    </div>
+    
+
 </body>
 </html>
