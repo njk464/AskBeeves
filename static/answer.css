@@ -33,12 +33,8 @@ body {
 .c {
 	font-family: roboto;
 }
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-=======
-	height: 80%;
-}
+
 #match-qs {
     padding: 0px;
     width: 500px;
 }
->>>>>>> aaa8b0848b68bbd947ae733d17c20e0b1f5d76f4
