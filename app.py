@@ -1,6 +1,7 @@
 from flask import Flask, render_template, json, request
 from requests.auth import HTTPBasicAuth
 from flask.ext.mysql import MySQL
+from sets import Set
 import json
 import sys
 import requests
@@ -19,12 +20,20 @@ mysql.init_app(app)
 
 @app.route("/")
 def main():
-    rec = most_recent(5)
-    freq = most_frequent(5)
-    return render_template('index.html', freq=freq, rec=rec)
+    rec = most_recent(10)
+    freq = most_frequent(10)
+    comb = Set(rec) | Set(freq)
+    return render_template('index.html',comb=comb, freq=freq, rec=rec)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 500
 
 @app.route("/answer", methods=['GET', 'POST'])
-
 def answer():
     question = request.form['search']
     answer = ask_question("uta_student3", "nkcGD7qy", question)
@@ -55,7 +64,10 @@ def answer():
 
         count += 1
 
-    return render_template('answer.html', answer=parsed_json, question=question)
+    try:
+        return render_template('answer.html', answer=parsed_json, question=question)
+    except Exception as e:
+        return render_template("500.html", error = str(e))
 
 
     # return render_template('answer.html', answer=parsed_json, question=question)
