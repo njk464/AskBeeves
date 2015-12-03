@@ -10,9 +10,118 @@
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="/static/typeahead.js"></script>
+
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <link href="/static/answer.css" rel="stylesheet">
+    <link href="/static/typeaheadjs.css" rel="stylesheet">
 </head>
+
+<script>
+
+$(function() {
+    
+    var matchCopy = []; 
+
+    var questions = [];
+
+    var stringData = $.ajax({
+                    url: "/static/questions.txt",
+                    async: false
+                 }).responseText;
+
+    var myRe = /text="(.*?)">/g
+    //Split values of string data
+    var stringArray = stringData.split('\n');
+    for (var i = 0; i < stringArray.length; i++) {
+        var myArray = myRe.exec(stringArray[i]);
+        if (myArray != null) {
+            console.log(myArray[1]);
+            questions.push(myArray[1]);
+        }
+    }
+
+    console.log(questions.length);
+    console.log(questions);
+
+    var substringMatcher = function(strs) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function(i, str) {
+          if (substrRegex.test(str)) {
+            matches.push(str);
+          }
+        });
+
+        cb(matches);
+        console.log(matches);
+        matchCopy = matches;
+      };
+    };
+
+    $('.typeahead').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      name: 'qs',
+      source: substringMatcher(questions)
+    });
+
+    $('.form-control').keypress(function() {
+        console.log("beeves");
+    });
+
+    $(".typeahead").keyup(function() {
+
+        if ($('#quest').val().length === 0) {
+            $('#match-qs').empty();
+            console.log("Empty");
+        }
+
+        var events = $('#match-qs');
+        $('#match-qs').empty();
+
+        if (matchCopy.length > 5) {
+            for (var i = 0 ; i < 5; i++) {
+                events.append('<li><a id=' + i + ' href="#">' + matchCopy[i] + '</a></li>');
+            }
+        } else {
+            for (var i = 0; i < matchCopy.length; i++) {
+                events.append('<li><a id=' + i + ' href="#">' + matchCopy[i] + '</a></li>');
+            }
+        }
+
+        $("#match-qs li a").on("click", function() {
+            var txtVal = this.text;
+            $("#quest").val(txtVal);
+            $('#match-qs').empty();
+        });
+
+    });
+
+    $('#quest').keyup(function() {
+        if ($('#quest').val().length === 0) {
+            $('#match-qs').empty();
+            console.log("Empty2");
+        }
+    });
+
+});
+
+</script>
+
 <body>
     <div class="holder">
         <div class="navbar">
@@ -20,12 +129,15 @@
             <div class="col-md-2"></div>
             <form id="question" action="answer" method="post" class="col-md-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{question}}" placeholder="Search for...">
+                    <input type="text" id="quest" class="form-control typeahead" name="search" value="{{question}}" placeholder="Search for...">
                     <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
+                    <button class="btn btn-default" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                     </span>
+                </div>
+                <div id="matchi" style="z-index: 5">
+                    <ul id="match-qs"></ul>
                 </div>
             </form>
         </div>
