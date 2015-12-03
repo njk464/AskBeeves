@@ -23,8 +23,15 @@ def main():
     freq = most_frequent(5)
     return render_template('index.html', freq=freq, rec=rec)
 
-@app.route("/answer", methods=['GET', 'POST'])
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 500
+
+@app.route("/answer", methods=['GET', 'POST'])
 def answer():
     question = request.form['search']
     answer = ask_question("uta_student3", "nkcGD7qy", question)
@@ -45,7 +52,10 @@ def answer():
         if 'metadataMap' in x:
             del x['metadataMap']
 
-    return render_template('answer.html', answer=parsed_json, question=question)
+    try:
+        return render_template('answer.html', answer=parsed_json, question=question)
+    except Exception as e:
+        return render_template("500.html", error = str(e))
 
 # method for asking a question to the watson API
 # ask_question("uta_student30", "V5iYOgVT", question)

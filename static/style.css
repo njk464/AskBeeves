@@ -30,6 +30,11 @@ body {
     margin: 10px 0;
     padding: 7px;
 }
-
-
-
+.error {
+    position: fixed; 
+    width: 30%;
+    top: 50%;
+    left: 40%;
+    margin-top: -10%;
+    margin-left: -10%;
+}
