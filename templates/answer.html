@@ -2,23 +2,30 @@
 <html lang="en">
 <head>
     <title>Ask Beeves</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Latest compiled and minified jQuery build -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified Bootstrap JavaScript -->
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <link href="/static/answer.css" rel="stylesheet">
 </head>
 <body>
     <div class="holder">
-        <div id="header" class="row">
-            <a href="/"><img id="askbeeves_logo" src="/static/askbeeves.png" width="200px" class="col-md-3"/></a>
+        <div class="navbar">
+            <a href="/"><img id="askbeeves_logo" src="/static/askbeeves.png"/></a>
             <div class="col-md-2"></div>
             <form id="question" action="answer" method="post" class="col-md-6">
                 <div class="input-group">
-                  <input type="text" class="form-control" name="search" value="{{question}}" placeholder="Search for...">
-                  <span class="input-group-btn">
+                    <input type="text" class="form-control" name="search" value="{{question}}" placeholder="Search for...">
+                    <span class="input-group-btn">
                     <button class="btn btn-default" type="button">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
-                  </span>
+                    </span>
                 </div>
             </form>
         </div>
