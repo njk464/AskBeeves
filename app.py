@@ -24,13 +24,28 @@ def main():
     return render_template('index.html', freq=freq, rec=rec)
 
 @app.route("/answer", methods=['GET', 'POST'])
+
 def answer():
     question = request.form['search']
-    answer = ask_question("uta_student3", "nkcGD7qy",question)
+    answer = ask_question("uta_student3", "nkcGD7qy", question)
     result = update(question)
-    # commented while watson was done
-    # return render_template('answer.html', answer=json.dumps(json.loads(answer.content), indent=4), question=question)
-    return render_template('answer.html', question=question)
+
+    parsed_json = json.loads(answer.content)['question']['evidencelist']
+
+    # Don't parse this way folks.
+    for x in parsed_json:
+        if 'id' in x:
+            del x['id']
+        if 'document' in x:
+            del x['document']
+        if 'copyright' in x:
+            del x['copyright']
+        if 'termsOfUse' in x:
+            del x['termsOfUse']
+        if 'metadataMap' in x:
+            del x['metadataMap']
+
+    return render_template('answer.html', answer=parsed_json, question=question)
 
 # method for asking a question to the watson API
 # ask_question("uta_student30", "V5iYOgVT", question)
